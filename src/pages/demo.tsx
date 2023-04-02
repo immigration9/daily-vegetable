@@ -16,9 +16,6 @@ const Demo = () => {
           new File([blob], fileName, {
             type: blob.type,
           }),
-          new File([blob], fileName, {
-            type: blob.type,
-          }),
         ],
         title,
         text,
