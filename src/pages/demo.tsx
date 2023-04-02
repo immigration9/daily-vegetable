@@ -55,8 +55,9 @@ const Demo = () => {
 
   const shareToFacebook = async () => {
     const appId = "529059189408745";
-    const imageUrl =
-      "https://www.thenewreact.com/_next/image?url=%2Fimages%2Fcarrot.jpg&w=3840&q=75";
+    const imageUrl = encodeURIComponent(
+      "https://www.thenewreact.com/_next/image?url=%2Fimages%2Fcarrot.jpg&w=3840&q=75"
+    );
     const caption = encodeURIComponent("Check out this carrot!");
 
     const shareUrl = `https://www.facebook.com/dialog/share?app_id=${appId}&display=popup&href=${imageUrl}&redirect_uri=${imageUrl}&quote=${caption}`;
