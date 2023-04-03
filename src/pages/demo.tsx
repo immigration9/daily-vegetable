@@ -14,16 +14,22 @@ const Demo = () => {
     const blob2 = await fetch("/images/potato.jpg").then((res) => res.blob());
 
     if (webShareSupported) {
+      const files = [
+        new File([blob], "carrot.jpg", {
+          type: blob.type,
+        }),
+      ];
+
+      if (isMultiple) {
+        files.push(
+          new File([blob2], "potato.jpg", {
+            type: blob2.type,
+          })
+        );
+      }
+
       const data = {
-        files: [
-          new File([blob], fileName, {
-            type: blob.type,
-          }),
-          isMultiple &&
-            new File([blob2], fileName, {
-              type: blob.type,
-            }),
-        ],
+        files,
         title,
         text,
       };
