@@ -7,9 +7,11 @@ const Demo = () => {
   const shareOrDownload = async (
     fileName: string,
     title: string,
-    text: string
+    text: string,
+    isMultiple?: boolean
   ) => {
     const blob = await fetch("/images/carrot.jpg").then((res) => res.blob());
+    const blob2 = await fetch("/images/potato.jpg").then((res) => res.blob());
 
     if (webShareSupported) {
       const data = {
@@ -17,6 +19,10 @@ const Demo = () => {
           new File([blob], fileName, {
             type: blob.type,
           }),
+          isMultiple &&
+            new File([blob2], fileName, {
+              type: blob.type,
+            }),
         ],
         title,
         text,
@@ -50,7 +56,7 @@ const Demo = () => {
     await shareOrDownload("carrot.png", "Carrots", "Delicious Carrots");
   };
   const onClickMultiple = async () => {
-    await shareOrDownload("carrot.png", "Carrots", "Delicious Carrots");
+    await shareOrDownload("carrot.png", "Carrots", "Delicious Carrots", true);
   };
 
   const shareToFacebook = async () => {
